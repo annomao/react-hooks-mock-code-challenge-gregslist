@@ -12,12 +12,14 @@ function ListingsContainer() {
     })
   },[])
 
+  function handleDeleteCard(deletedCard){
+    const updatedCards = cardsList.filter((card) => card.id !== deletedCard.id);
+    setCardsList(updatedCards);
+  }
+
   const renderCards = cardsList.map((card)=>{
-    return <ListingCard 
-    key={card.id} 
-    description={card.description} 
-    image={card.image} 
-    location={card.location}/>
+    return <ListingCard card={card} onDelete={handleDeleteCard} />
+    
   })
   return (
     <main>
